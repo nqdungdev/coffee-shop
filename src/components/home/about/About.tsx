@@ -5,7 +5,7 @@ type Props = {};
 
 const About = (props: Props) => {
   return (
-    <div
+    <section
       className="bg-[url('/uploads/source/background/bg-green.png')] bg-cover bg-no-repeat py-8"
       style={{
         backgroundPosition: "top center",
@@ -111,7 +111,7 @@ const About = (props: Props) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

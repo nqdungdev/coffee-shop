@@ -1,5 +1,3 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
 import About from "@/components/home/about/About";
 import ProductCategory from "@/components/home/productCategory/ProductCategory";
 import Slider from "@/components/home/slider/Slider";
@@ -211,8 +209,6 @@ export default function Home() {
           </div>
         </div>
 
-        <Header />
-
         <Slider />
 
         <ProductCategory />
@@ -220,14 +216,6 @@ export default function Home() {
         <Product />
 
         <About />
-
-        <Footer />
-
-        <div className="py-3 px-0 text-center block bg-theme text-white">
-          <div className="container">
-            <p>© 2024 Coffee</p>
-          </div>
-        </div>
 
         <Link
           href="#header"

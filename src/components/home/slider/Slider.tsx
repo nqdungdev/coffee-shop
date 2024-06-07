@@ -23,7 +23,7 @@ const Slider = (props: Props) => {
   };
 
   return (
-    <div className="relative -mt-[170px]">
+    <section className="relative -mt-[170px]">
       <div
         className="relative h-[700px] w-full"
         style={{ position: "relative" }}
@@ -54,7 +54,7 @@ const Slider = (props: Props) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

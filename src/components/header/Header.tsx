@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaSearch, FaTimes, FaTrashAlt } from "react-icons/fa";
 import { FaBasketShopping, FaMinus, FaPlus } from "react-icons/fa6";
+import Button from "../common/Button";
 
 type Props = {};
 
@@ -340,22 +341,12 @@ const Header = (props: Props) => {
           )}
         </div>
 
-        <div className="mt-16">
-          <div className="pb-4 flex gap-1 justify-center">
-            <Link
-              className="relative inline-block overflow-hidden font-bold leading-[30px] cursor-pointer py-1 px-7 text-white border border-solid border-black rounded-[5px] bg-black uppercase font-xs text-center tracking-[1px] transition-all duration-300 
-              before:transition-all before:duration-300 before:absolute before:-left-full before:top-0 before:bottom-0 before:w-full before:bg-white hover:text-black hover:before:left-0"
-              href="menu"
-            >
-              <span className="relative z-10">MUA THÊM</span>
-            </Link>
-            <Link
-              className="relative inline-block overflow-hidden font-bold leading-[30px] cursor-pointer py-1 px-7 text-white border border-solid border-red rounded-[5px] bg-red uppercase font-xs text-center tracking-[1px] transition-all duration-300 
-              before:transition-all before:duration-300 before:absolute before:-left-full before:top-0 before:bottom-0 before:w-full before:bg-white hover:text-red hover:before:left-0"
-              href="#"
-            >
-              <span className="relative z-10">THANH TOÁN</span>
-            </Link>
+        <div className="mt-16 w-full">
+          <div className="pb-4 flex gap-1 justify-center w-full">
+            <Button>Thanh toán</Button>
+            <Button className="border-red bg-red text-white before:bg-white hover:text-red">
+              Mua thêm
+            </Button>
           </div>
         </div>
       </div>

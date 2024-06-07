@@ -9,7 +9,7 @@ type Props = {};
 
 const ProductCategory = (props: Props) => {
   return (
-    <div className="-mt-[70px] pb-8 z-40 relative">
+    <section className="-mt-[70px] pb-8 z-40 relative">
       <div className="container">
         <div className="relative grid grid-cols-2 lg:grid-cols-3 gap-2">
           {[
@@ -31,7 +31,7 @@ const ProductCategory = (props: Props) => {
           ].map(
             (el, index) =>
               el && (
-                <div
+                <article
                   key={index}
                   className="relative mb-3 overflow-hidden rounded-[14px] min-h-[292px] flex flex-col shadow-[0_35px_40px_0_rgba(10,22,39,.1)] group"
                 >
@@ -77,12 +77,12 @@ const ProductCategory = (props: Props) => {
                       className="absolute -top-[30px] right-[80px] scale-0 transition-all duration-300 group-hover:-top-[40px] group-hover:scale-100"
                     />
                   </div>
-                </div>
+                </article>
               )
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

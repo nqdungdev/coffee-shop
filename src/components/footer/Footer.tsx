@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaChevronRight, FaPaperPlane } from "react-icons/fa6";
+import Copyright from "./Copyright";
 
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="py-12 bg-[url('/uploads/source/background/footer-bg.png')] bg-cover bg-no-repeat">
+    <footer className="bg-[url('/uploads/source/background/footer-bg.png')] bg-cover bg-no-repeat">
       <div className="container">
-        <div className="grid grid-cols-12">
+        <div className="py-12 grid grid-cols-12">
           <div className="col-span-12 md:col-span-4">
             <div className="mb-3">
               <p className="text-white relative pb-4 mb-4 text-md font-bold leading-6">
@@ -146,6 +147,8 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
+
+      <Copyright />
     </footer>
   );
 };

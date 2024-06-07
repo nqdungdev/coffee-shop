@@ -73,7 +73,7 @@ const Product = (props: Props) => {
     },
   ];
   return (
-    <div className="bg-[url('/uploads/source/background/bo-cong-anh-1.png')] bg-cover bg-no-repeat bg-center bg-fixed bg-blend-color-burn py-8">
+    <section className="bg-[url('/uploads/source/background/bo-cong-anh-1.png')] bg-cover bg-no-repeat bg-center bg-fixed bg-blend-color-burn py-8">
       <div className="container">
         <div className="relative">
           <div className="text-center mt-4 mb-8">
@@ -169,7 +169,7 @@ const Product = (props: Props) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
