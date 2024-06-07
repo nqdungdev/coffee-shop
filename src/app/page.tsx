@@ -1,112 +1,252 @@
+import Footer from "@/components/footer/Footer";
+import Header from "@/components/header/Header";
+import About from "@/components/home/about/About";
+import ProductCategory from "@/components/home/productCategory/ProductCategory";
+import Slider from "@/components/home/slider/Slider";
+import Product from "@/components/home/product/Product";
 import Image from "next/image";
+import Link from "next/link";
+import { FaChevronUp } from "react-icons/fa6";
+import iconMenu from "@/assets/images/icon/icon-menu.png";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="flex min-h-screen flex-col items-center justify-between bg-white text-black">
+      <div>
+        {/* MOBILE */}
+        <div className="header-mobile hidden-md hidden">
+          <div className="container">
+            <div className="row">
+              <div className="col-3">
+                <a href="#menu" className="btn-menu-mobile">
+                  <i className="fal fa-bars" />
+                </a>
+              </div>
+              <div className="col-6 logo text-center">
+                <a
+                  href="https://themes.sikidodemo.com/demo-website/web53/"
+                  title="Coffee"
+                >
+                  <img
+                    src="uploads/source/logo/logo.png"
+                    alt="Coffee"
+                    title="Coffee"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div className="col-3">
+                <a
+                  className="js_btn_panel__sidebar btn-search-mobile"
+                  href="#search-sidebar"
+                >
+                  <i className="fal fa-search" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="clearfix" />
+          {/* <div class="search">
+		<form class="navbar-form form-search" action="search" method="get" role="search" style="margin:0;padding:0;">
+			<div class="form-group" style="margin:0;padding:0;width: calc( 100% - 50px);float:left;">
+				<input class="form-control search-field" type="text" value="" name="keyword" placeholder="Tìm kiếm" style="width: 100%;">
+				<input type="hidden" value="products" name="type">
+			</div>
+			<button type="submit" class="btn btn-search btn-default" style="width:50px;float:left;"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</form>
+	</div> */}
         </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div className="panel--sidebar td-search-wrap-mob" id="search-sidebar">
+          <div
+            className="td-drop-down-search"
+            aria-labelledby="td-header-search-button"
+          >
+            <form method="get" className="td-search-form" action="search">
+              <div role="search" className="td-search-input">
+                <input
+                  id="td-header-search-mob"
+                  type="text"
+                  name="keyword"
+                  autoComplete="off"
+                  placeholder="Tìm kiếm..."
+                />
+                <input type="hidden" defaultValue="products" name="type" />
+              </div>
+              <button className="td-search-button" type="submit">
+                <i className="fal fa-search" />
+              </button>
+            </form>
+            <div className="loading ng-star-inserted ">
+              <div className="vs-loading__load vs-loading--default">
+                <div className="lds">
+                  <div className="lds__1" />
+                  <div className="lds__2" />
+                </div>
+              </div>
+            </div>
+            <div id="td-aj-search-mob" />
+          </div>
+          <div className="panel__close">
+            <a href="#" className="js_panel__close">
+              <i className="fal fa-times" />
+            </a>
+          </div>
+        </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div id="td-search-wrap-dest" style={{ display: "none" }}>
+          <div className="search">
+            <form
+              className="navbar-form form-search"
+              action="search?type=products"
+              method="get"
+              role="search"
+              style={{ margin: 0, padding: 0 }}
+            >
+              <div className="form-group" style={{ margin: 0, padding: 0 }}>
+                <input
+                  className="form-control search-field"
+                  type="text"
+                  name="keyword"
+                  placeholder="Tìm kiếm"
+                  id="searchInput"
+                />
+                <input type="hidden" defaultValue="products" name="type" />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-search btn-default"
+                style={{ width: 50 }}
+              >
+                <i className="fa fa-search" aria-hidden="true" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <nav
+          id="menu"
+          className="menu-mobile hidden"
+          style={{ display: "none" }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <ul>
+            <li>
+              <a href="trang-chu">TRANG CHỦ</a>
+            </li>
+            <li>
+              <a href="ca-phe">CÀ PHÊ</a>
+            </li>
+            <li>
+              <a href="san-pham">THỰC ĐƠN</a>
+              <ul>
+                <li>
+                  <a href="do-an">Đồ ăn</a>
+                </li>
+                <li>
+                  <a href="an-vat">Ăn vặt</a>
+                </li>
+                <li>
+                  <a href="do-uong">Đồ uống</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="do-uong">ĐỒ UỐNG</a>
+            </li>
+            <li>
+              <a href="ve-chung-toi">VỀ CHÚNG TÔI</a>
+            </li>
+            <li>
+              <a href="lien-he">LIÊN HỆ</a>
+            </li>
+          </ul>
+        </nav>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className="panel--sidebar" id="cart-sidebar">
+          <div className="panel__header">
+            <h3>Giỏ hàng</h3>
+            <div className="panel__close">
+              <a href="#" className="js_panel__close">
+                <i className="fal fa-times" />
+              </a>
+            </div>
+          </div>
+          <div className="panel__content">
+            <div className="loading ng-star-inserted ">
+              <div className="vs-loading__load vs-loading--default">
+                <div className="lds">
+                  <div className="lds__1" />
+                  <div className="lds__2" />
+                </div>
+              </div>
+            </div>
+            <div className="cart-error" />
+            <div className="js_cart_item_result p-3">
+              <div className="cart-item-skeleton">
+                <div className="grid__column skeleton-img">
+                  <div className="skeleton__thumbnail-block">
+                    <div className="skeleton__thumbnail" />
+                  </div>
+                </div>
+                <div className="grid__column skeleton-info">
+                  <div className="skeleton-info__block">
+                    <div className="skeleton-info__title" />
+                    <div className="skeleton-info__variant" />
+                  </div>
+                </div>
+              </div>
+              <div className="cart-items js_cart_items" />
+            </div>
+            <div className="cart-collaterals page-cart-right">
+              <hr />
+              <div className="cart-button pb-3">
+                <a className="btn btn-effect-default" href="san-pham">
+                  MUA THÊM
+                </a>
+                <a className="btn btn-effect-default btn-red" href="thanh-toan">
+                  THANH TOÁN
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+        <Header />
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Slider />
+
+        <ProductCategory />
+
+        <Product />
+
+        <About />
+
+        <Footer />
+
+        <div className="py-3 px-0 text-center block bg-theme text-white">
+          <div className="container">
+            <p>© 2024 Coffee</p>
+          </div>
+        </div>
+
+        <Link
+          href="#header"
+          className="w-[50px] h-[50px] rounded-full bg-themeLight flex justify-center items-center fixed bottom-5 right-5 text-lg z-50 text-white"
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          <FaChevronUp />
+        </Link>
+
+        <Link
+          href="menu"
+          className="w-[80px] h-[80px] rounded-full flex justify-center items-center fixed bottom-20 right-5 text-lg z-50 text-white"
+        >
+          <Image
+            src={iconMenu}
+            alt="Icon menu"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Link>
       </div>
     </main>
   );
