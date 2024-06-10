@@ -1,4 +1,4 @@
-import Pagination from "@/components/common/Pagination";
+import Pagination from "@/components/common/pagination/Pagination";
 import ProductItem from "@/components/home/product/ProductItem";
 import React from "react";
 import { FaWindowClose } from "react-icons/fa";

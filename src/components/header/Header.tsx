@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaSearch, FaTimes, FaTrashAlt } from "react-icons/fa";
 import { FaBasketShopping, FaMinus, FaPlus } from "react-icons/fa6";
-import Button from "../common/Button";
+import Button from "../common/button/Button";
 
 type Props = {};
 

@@ -1,4 +1,4 @@
-import Button from "@/components/common/Button";
+import Button from "@/components/common/button/Button";
 import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaYoutube } from "react-icons/fa6";
