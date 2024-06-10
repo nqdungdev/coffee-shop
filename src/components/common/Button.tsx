@@ -5,9 +5,10 @@ type Props = {
   children: string;
   link?: string;
   className?: string;
+  type?: string;
 };
 
-const Button = ({ children, link = "", className }: Props) => {
+const Button = ({ children, link = "", className, type = "button" }: Props) => {
   return (
     <Link
       href={link}
@@ -15,6 +16,7 @@ const Button = ({ children, link = "", className }: Props) => {
               before:transition-all before:duration-300 before:absolute before:-left-full before:top-0 before:bottom-0 before:w-full before:bg-white hover:text-black hover:before:left-0 ${
                 className && className
               }`}
+      type={type}
     >
       <span className="relative z-10">{children}</span>
     </Link>
