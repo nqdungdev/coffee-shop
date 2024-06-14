@@ -1,8 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaEye, FaStar, FaStarHalf } from "react-icons/fa6";
 import ProductItem from "./ProductItem";
 
 type Props = {};

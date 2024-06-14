@@ -29,7 +29,7 @@ const Header = (props: Props) => {
       <div className="p-3 bg-transparent h-[100px]">
         <div className="container h-full">
           <div className="grid grid-cols-12 h-full">
-            <div className="col-span-5 text-left px-3">
+            <nav className="col-span-5 text-left px-3">
               <div className="mt-3 flex gap-2">
                 {[
                   {
@@ -70,7 +70,7 @@ const Header = (props: Props) => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </nav>
 
             <div className="col-span-2 text-center logo px-3 relative">
               <Link href="/" title="Coffee">

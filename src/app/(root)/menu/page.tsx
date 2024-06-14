@@ -1,5 +1,5 @@
 import React from "react";
-import Products from "@/app/menu/components/products/Products";
+import Products from "@/app/(root)/menu/components/products/Products";
 import Breadcrumbs from "@/components/common/breadcrumbs/Breadcrumbs";
 
 type Props = {};

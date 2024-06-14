@@ -82,7 +82,7 @@ const ProductItem = ({ product }: Props) => {
           )}
         </div>
         <div className="relative block">
-          <div className="inline-block flex">
+          <div className="inline-block flex items-center gap-2">
             <FaStar className="text-yellow" />
             <FaStar className="text-yellow" />
             <FaStar className="text-yellow" />
