@@ -35,24 +35,26 @@ const config: Config = {
         },
         translateL: {
           "0%": {
-            position: "relative",
             left: "100%",
           },
           "100%": {
-            position: "relative",
             left: "0",
           },
         },
         translateR: {
-          "0%": { position: "relative", right: "100%" },
-          "100%": { position: "relative", right: "0" },
+          "0%": {
+            right: "100%",
+          },
+          "100%": {
+            right: "0",
+          },
         },
       },
       animation: {
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
-        translateL: "translateL 300ms ease-in-out",
-        translateR: "translateR 300ms ease-in-out",
+        translateL: "translateL 1s ease-in-out",
+        translateR: "translateR 1s ease-in-out",
       },
     },
   },

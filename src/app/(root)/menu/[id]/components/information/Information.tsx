@@ -7,9 +7,9 @@ type Props = {};
 
 const Information = (props: Props) => {
   const [value, setValue] = useState<number>(1);
-  console.log(value);
+
   return (
-    <div>
+    <section>
       <h1 className="text-[25px] leading-[30px] mb-3 mt-0 text-[#222] font-bold">
         Ca cao kem trứng dừa nướng
       </h1>
@@ -81,7 +81,7 @@ const Information = (props: Props) => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

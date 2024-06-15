@@ -6,6 +6,7 @@ type Props = {
   href?: string;
   className?: string;
   type?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
 };
 
@@ -14,6 +15,7 @@ const Button = ({
   href = "",
   className,
   type = "button",
+  style,
   onClick,
 }: Props) => {
   return (
@@ -24,6 +26,7 @@ const Button = ({
                 className && className
               }`}
       type={type}
+      style={style}
       onClick={onClick}
     >
       <span className="relative z-10">{children}</span>

@@ -16,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={josefinSans.className}>{children}</body>
+      <body className={josefinSans.className}>
+        <main className="min-h-screen text-black bg-[url('/uploads/source/background/cafe-background-vintage-coffee.jpg')] bg-cover bg-no-repeat overflow-hidden">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
