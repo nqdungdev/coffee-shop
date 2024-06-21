@@ -12,10 +12,10 @@ const Coffee = (props: Props) => {
       <section className="bg-[url('/uploads/source/about/bg-coffee.jpg')] bg-cover bg-no-repeat bg-center bg-blend-color-burn bg-[rgba(0,0,0,0.673)] pt-[150px] pb-[200px]"></section>
 
       <section className="container">
-        <div className="bg-theme -mt-[50px] mx-[100px] py-8">
+        <div className="bg-theme -mt-[50px] mx-[100px] rounded px-2 py-8">
           <div className="relative overflow-hidden">
             <div className="text-center mb-8">
-              <p className="text-center tracking-0 pb-0 m-0 relative block text-white text-[45px] leading-[45px]">
+              <p className="text-center tracking-0 pb-0 m-0 text-white text-[45px] leading-[45px]">
                 Sản phẩm chất lượng tới người yêu cà phê!
               </p>
             </div>

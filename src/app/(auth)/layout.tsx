@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald, Josefin_Sans } from "next/font/google";
 import "@/app/globals.css";
+import { ToastContainer } from "react-toastify";
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
         <main className="min-h-screen text-black bg-[url('/uploads/source/background/cafe-background-vintage-coffee.jpg')] bg-cover bg-no-repeat overflow-hidden">
           {children}
         </main>
+        <ToastContainer />
       </body>
     </html>
   );

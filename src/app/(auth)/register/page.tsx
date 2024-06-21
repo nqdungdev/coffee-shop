@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 type Props = {};
 
 export interface RegisterValues {
@@ -36,6 +37,13 @@ const Register = (props: Props) => {
       .email("Email không đúng định dạng"),
   });
 
+  // const fetcher: Fetcher<any, string> = (url) =>
+  //   fetch(url).then((res) => res.json());
+  // const { data, mutate } = useSWR(
+  //   "https://diaty2api.vercel.app/api/register",
+  //   fetcher
+  // );
+
   const {
     register,
     handleSubmit,
@@ -51,11 +59,62 @@ const Register = (props: Props) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<RegisterValues> = async (values) => {};
+  const onSubmit: SubmitHandler<RegisterValues> = async (values) => {
+    try {
+      const res = await fetch("https://diaty2api.vercel.app/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        toast.success(result.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        // mutate(); // Re-fetch the data
+      } else {
+        toast.error(result.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error: any) {
+      toast.error(error, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
 
   return (
     <div className="grid grid-cols-2">
-      <div className="relative bg-transparent h-screen flex justify-center items-center animate-translateR order-2">
+      <div className="col-span-2 md:col-span-1 relative bg-transparent h-screen flex justify-center items-center animate-translateR order-2">
         <div className="relative flex flex-col animate-translateR">
           <h1 className="text-[25px] leading-[30px] mb-3 mt-0 text-[#222] font-bold uppercase">
             Đăng ký!
@@ -63,7 +122,7 @@ const Register = (props: Props) => {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center gap-5 w-[400px]"
+            className="flex flex-col items-center gap-5 w-[300px]"
           >
             {isSuccess && (
               <p className="w-full bg-[#07bc0c]/80 text-center text-sm text-white px-5 py-3 rounded-md">
@@ -123,7 +182,8 @@ const Register = (props: Props) => {
           </form>
         </div>
       </div>
-      <div className="relative bg-theme h-screen flex justify-center items-center animate-translateL z-20 bg-gradient-to-tr from-black to-theme rounded-e-[100px] overflow-hidden order-1">
+
+      <div className="hidden md:flex relative bg-theme h-screen flex justify-center items-center animate-translateL z-20 bg-gradient-to-tr from-black to-theme rounded-e-[100px] overflow-hidden order-1">
         <div className="relative flex flex-col justify-center items-center animate-translateL p-10">
           <h1 className="text-[40px] text-white text-bold text-center mb-5">
             Hello, friend!
@@ -134,7 +194,7 @@ const Register = (props: Props) => {
           </p>
           <Button
             className="bg-transparent text-white border-white hover:bg-white hover:text-theme text-sm"
-            href="/login"
+            onClick={() => router.push("/login")}
           >
             Đăng nhập
           </Button>
