@@ -19,7 +19,7 @@ const Breadcrumbs = (props: Props) => {
             /
           </span>
           <Link
-            href="/"
+            href="/menu"
             className="px-1 text-[#2e2e2e] leading-[37px] line-clamp-1"
           >
             Sản phẩm

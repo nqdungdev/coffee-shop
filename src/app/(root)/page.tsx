@@ -1,7 +1,7 @@
 import About from "@/components/home/about/About";
 import ProductCategory from "@/components/home/productCategory/ProductCategory";
 import Slider from "@/components/home/slider/Slider";
-import Product from "@/components/home/product/Product";
+import Products from "@/components/home/products/Products";
 import Image from "next/image";
 import Link from "next/link";
 import { FaChevronUp } from "react-icons/fa6";
@@ -12,9 +12,9 @@ export default function Home() {
     <main className="in-h-screen bg-white text-black">
       <Slider />
 
-      <ProductCategory />
+      {/* <ProductCategory /> */}
 
-      <Product />
+      <Products />
 
       <About />
 
@@ -32,8 +32,9 @@ export default function Home() {
         <Image
           src={iconMenu}
           alt="Icon menu"
-          layout="fill"
-          objectFit="contain"
+          fill
+          sizes="10vw"
+          style={{ objectFit: "contain" }}
         />
       </Link>
     </main>

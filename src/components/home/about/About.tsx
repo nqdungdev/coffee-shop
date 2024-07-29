@@ -6,7 +6,7 @@ type Props = {};
 const About = (props: Props) => {
   return (
     <section
-      className="bg-[url('/uploads/source/background/bg-green.png')] bg-cover bg-no-repeat py-8"
+      className="bg-[url('/uploads/source/background/wall-brick-decoration-background.jpg')] bg-black bg-cover bg-no-repeat relative py-8"
       style={{
         backgroundPosition: "top center",
       }}
@@ -19,7 +19,7 @@ const About = (props: Props) => {
                 Mong đợi hơn cả cà phê
               </p>
               <p className="text-left tracking-normal m-0 block text-white text-[30px] leading-[30px]">
-                LICERIA COFFEE
+                GỜ COFFEE
               </p>
             </div>
 
@@ -31,11 +31,11 @@ const About = (props: Props) => {
                 bánh ngọt và các món thú vị khác nhằm làm hài lòng mọi vị giác.
               </p>
               <p className="text-white text-base text-justify">
-                Mọi người đến Liceria để thư giãn, trò chuyện, họp mặt hoặc làm
-                việc. Chúng tôi là địa điểm thư giãn cho các gia đình có trẻ em,
-                nơi tụ tập bạn bè, họp nhóm – và chúng tôi không thể hạnh phúc
-                hơn về điều này. Truy cập để tìm hiểu về chúng tôi và bạn sẽ
-                thấy: chúng tôi thú vị hơn nhiều so với những gì chúng tôi pha.
+                Mọi người đến Gờ để thư giãn, trò chuyện, họp mặt hoặc làm việc.
+                Chúng tôi là địa điểm thư giãn cho các gia đình có trẻ em, nơi
+                tụ tập bạn bè, họp nhóm – và chúng tôi không thể hạnh phúc hơn
+                về điều này. Truy cập để tìm hiểu về chúng tôi và bạn sẽ thấy:
+                chúng tôi thú vị hơn nhiều so với những gì chúng tôi pha.
               </p>
             </div>
           </div>
@@ -43,12 +43,13 @@ const About = (props: Props) => {
           <div className="order-1 col-span-2 md:col-span-1 px-3">
             <figure className="relative w-full h-full">
               <Image
-                src="/uploads/source/about/img-coffee-1.png"
+                src="/uploads/source/about/people2.jpg"
                 alt="COFFEE"
                 title="COFFEE"
                 loading="lazy"
-                layout="fill"
-                objectFit="contain"
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
               />
             </figure>
           </div>
@@ -59,13 +60,13 @@ const About = (props: Props) => {
               image: "/uploads/source/icon/f-icon-1-1.png",
               label: "Cà phê chất lượng",
               description:
-                "Liceria Coffee tự hào là 1 trong những đơn vị cung cấp cafe sạch, rang mộc tự nhiên chất lượng với giá tốt nhất cho khách hàng.",
+                "Gờ Coffee tự hào là 1 trong những đơn vị cung cấp cafe sạch, rang mộc tự nhiên chất lượng với giá tốt nhất cho khách hàng.",
             },
             {
               image: "/uploads/source/icon/f-icon-3-1.png",
               label: "Đa dạng thức uống",
               description:
-                "Đến với Liceria Coffee</, khách hàng sẽ có những trải nghiệm thú vị từ hơn 40 loại đồ uống các loại được phục vụ trên tiêu chí: Ngon – Rẻ – Chất lượng.",
+                "Đến với Gờ Coffee, khách hàng sẽ có những trải nghiệm thú vị từ hơn 40 loại đồ uống các loại được phục vụ trên tiêu chí: Ngon – Rẻ – Chất lượng.",
             },
             {
               image: "/uploads/source/icon/f-icon-4-1.png",
@@ -77,7 +78,7 @@ const About = (props: Props) => {
               image: "/uploads/source/icon/f-icon-1-1.png",
               label: "Hậu mãi khách hàng",
               description:
-                "Nhằm cảm ơn khách hàng luôn tin tưởng và đồng hành cùng Liceria Coffee trong suốt những năm tháng qua, chúng tôi luôn có những chính sách ưu đãi tốt nhất.",
+                "Nhằm cảm ơn khách hàng luôn tin tưởng và đồng hành cùng Gờ Coffee trong suốt những năm tháng qua, chúng tôi luôn có những chính sách ưu đãi tốt nhất.",
             },
           ].map(
             (el, index) =>
@@ -94,15 +95,16 @@ const About = (props: Props) => {
                         title={el.label}
                         data-src={el.image}
                         loading="lazy"
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        sizes="10vw"
+                        style={{ objectFit: "contain" }}
                       />
                     </figure>
 
                     <p className="text-left text-white text-[22px] font-bold mt-5 mb-3 leading-[25px]">
                       {el.label}
                     </p>
-                    <p className="text-left text-white text-[17.6px] leading-6">
+                    <p className="text-justify text-white text-[17.6px] leading-6">
                       {el.description}
                     </p>
                   </div>

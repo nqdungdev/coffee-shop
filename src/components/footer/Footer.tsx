@@ -10,17 +10,17 @@ const Footer = (props: Props) => {
   return (
     <footer className="bg-[url('/uploads/source/background/footer-bg.png')] bg-cover bg-no-repeat">
       <div className="container">
-        <div className="py-12 grid grid-cols-12">
-          <div className="col-span-12 md:col-span-4">
+        <div className="py-12 grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4 mb-3">
             <div className="mb-3">
               <p className="text-white relative pb-4 mb-4 text-md font-bold leading-6">
-                LICERIA COFFE
+                GỜ COFFEE
               </p>
             </div>
-            <p className="text-base text-white mb-4">
+            <p className="text-base text-white mb-4 text-justify">
               Bằng cách cung cấp các sản phẩm và dịch vụ chất lượng, nhanh
-              chóng, đáng tin cậy, và chuyên nghiệp, LICERIA mong muốn cung cấp
-              cho khách hàng một trải nghiệm độc đáo, nhất quán và đẳng cấp.
+              chóng, đáng tin cậy, và chuyên nghiệp, GỜ mong muốn cung cấp cho
+              khách hàng một trải nghiệm độc đáo, nhất quán và đẳng cấp.
             </p>
             <div className="flex gap-2 items-center flex-wrap">
               {[
@@ -46,14 +46,13 @@ const Footer = (props: Props) => {
                   link: "#",
                 },
               ].map((el, index) => (
-                <Link key={index} href={el.link}>
+                <Link key={index} href={el.link} className="relative w-7 h-7">
                   <Image
                     src={el.image}
                     alt={el.label}
                     title={el.label}
-                    loading="lazy"
-                    width={28}
-                    height={28}
+                    fill
+                    sizes="10vw"
                   />
                 </Link>
               ))}
@@ -121,7 +120,7 @@ const Footer = (props: Props) => {
             </div>
             <div className="text-white mt-3 mx-auto mb-8">
               Đăng ký để nhận thông báo về việc ra mắt sản phẩm, ưu đãi đặc biệt
-              và tin tức về LICERIA COFFEE.
+              và tin tức về GỜ COFFEE.
             </div>
             <form method="post">
               <div className="overflow-hidden border-b border-solid border-white h-[50px] flex">

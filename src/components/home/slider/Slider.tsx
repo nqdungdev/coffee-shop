@@ -30,8 +30,8 @@ const Slider = (props: Props) => {
       >
         <div ref={slideRef} className="h-full">
           {[
-            { image: "/uploads/source/slide/slide1.png" },
-            { image: "/uploads/source/slide/slide2.png" },
+            { image: "/uploads/source/slide/slider1.jpg" },
+            { image: "/uploads/source/slide/slider2.jpeg" },
           ].map(
             (el, index) =>
               el && (
@@ -46,8 +46,9 @@ const Slider = (props: Props) => {
                   <Image
                     src={el.image}
                     alt=""
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    sizes="100vw"
                   />
                 </div>
               )

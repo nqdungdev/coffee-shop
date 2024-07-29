@@ -1,11 +1,78 @@
+"use client";
+
 import Button from "@/components/common/button/Button";
 import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaYoutube } from "react-icons/fa6";
-
+import { FieldErrors, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 type Props = {};
 
+export interface FormInputs {
+  name: string;
+  email: string;
+  phone: string;
+  content: string;
+}
+
 const Contact = (props: Props) => {
+  const validationSchema = yup.object().shape({
+    name: yup.string().required("Tên không được để trống"),
+    email: yup
+      .string()
+      .required("Email không được để trống")
+      .email("Email không đúng định dạng"),
+    phone: yup
+      .string()
+      .required("Số điện thoại không được để trống")
+      .min(10, "Số điện thoại không đúng"),
+    content: yup.string().required("Ghi chú không được để trống"),
+  });
+  const { register, handleSubmit, watch } = useForm<FormInputs>({
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      content: "",
+    },
+    resolver: yupResolver(validationSchema),
+  });
+
+  const sendEmail = async (values: FormInputs) => {
+    // Get the current date and time in JST format
+    const currentDate = new Date();
+    const subject = `from ${values.email}`;
+    const emailBody = `
+      ${currentDate} 
+      ==================================================
+
+      ■ Họ tên:
+      ${values.name}
+
+      ■ Email:
+      ${values.email}
+
+      ■ Số điện thoại:
+      ${values.phone}
+
+      ■ Ghi chú:
+      ${values.content}
+    `;
+    const mailtoURL = `mailto:${
+      process.env.NEXT_PUBLIC_EMAIL
+    }?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      emailBody
+    )}`;
+    window.location.href = mailtoURL;
+  };
+
+  const onSuccess = (data: FormInputs) => sendEmail(data);
+  const onError = (error: FieldErrors<FormInputs>) => {
+    console.log(error);
+  };
+
   return (
     <main className="bg-white text-black pt-[165px]">
       <section className="min-h-[200px] h-[200px] text-center overflow-hidden">
@@ -74,16 +141,19 @@ const Contact = (props: Props) => {
                 <h3>LIÊN HỆ CHÚNG TÔI</h3>
               </div>
 
-              <form className="overflow-hidden w-full">
+              <form
+                className="overflow-hidden w-full"
+                onSubmit={handleSubmit(onSuccess)}
+              >
                 <div className="grid grid-cols-2 gap-5">
                   <div className="col-span-2 md:col-span-1 mb-3 relative">
                     <input
                       type="text"
                       className="shadow-none w-full h-[52px] bg-transparent border border-solid border-[#d9dde4] rounded-md p-5 txt-base leading-[1.2] tracking-[0.3px]"
                       id="name"
-                      name="name"
                       placeholder="Họ tên của bạn"
                       required
+                      {...register("name")}
                     />
                   </div>
                   <div className="mb-3 relative col-md-6">
@@ -91,9 +161,9 @@ const Contact = (props: Props) => {
                       type="email"
                       className="shadow-none w-full h-[52px] bg-transparent border border-solid border-[#d9dde4] rounded-md p-5 txt-base leading-[1.2] tracking-[0.3px]"
                       id="email"
-                      name="email"
                       placeholder="Email của bạn"
                       required
+                      {...register("email")}
                     />
                   </div>
                 </div>
@@ -103,9 +173,9 @@ const Contact = (props: Props) => {
                     type="tel"
                     className="shadow-none w-full h-[52px] bg-transparent border border-solid border-[#d9dde4] rounded-md p-5 txt-base leading-[1.2] tracking-[0.3px]"
                     id="phone"
-                    name="phone"
                     placeholder="Điện thoại của bạn"
                     required
+                    {...register("phone")}
                   />
                 </div>
 
@@ -114,14 +184,13 @@ const Contact = (props: Props) => {
                     className="shadow-none w-full h-[52px] bg-transparent border border-solid border-[#d9dde4] rounded-md p-5 txt-base leading-[1.2] tracking-[0.3px]"
                     value=""
                     id="content"
-                    name="content"
                     placeholder="Ghi chú"
                     style={{
                       overflow: "hidden",
                       wordWrap: "break-word",
                       height: 150,
                     }}
-                    defaultValue={""}
+                    {...register("content")}
                   />
                 </div>
 

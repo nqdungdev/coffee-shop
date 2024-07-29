@@ -48,44 +48,61 @@ const Login = (props: Props) => {
   });
 
   const onSubmit: SubmitHandler<LoginValues> = async (values) => {
-    const res = await fetch("https://diaty2api.vercel.app/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: values.email, password: values.password }),
-    });
-
-    const result = await res.json();
-
-    if (res.ok) {
-      // Cookies.set("token", result.token);
-      localStorage.setItem("token", result.token);
-      toast.success(result.message, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
+    try {
+      const res = await fetch("https://diatycafe.vercel.app/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
       });
 
-      // mutate(); // Re-fetch the data
-      setTimeout(() => router.push("/"), 5000);
-    } else {
-      toast.error(result.message, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
+      const result = await res.json();
+
+      console.log(result);
+      await fetch("/api/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sessionToken: result.token,
+          expiresAt: "10h",
+        }),
       });
-    }
+
+      if (res.ok) {
+        // Cookies.set("token", result.token);
+        localStorage.setItem("token", result.token);
+        toast.success(result.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        // mutate(); // Re-fetch the data
+        setTimeout(() => router.push("/"), 5000);
+      } else {
+        toast.error(result.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {}
   };
 
   return (
