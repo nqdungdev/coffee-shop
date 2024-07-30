@@ -30,68 +30,63 @@ const Menu = (props: Props) => {
     dispatch(setSortBy(value));
   };
   return (
-    <main className="bg-white text-black pt-[165px]">
-      <Breadcrumbs />
-      <section className="container mt-4">
-        <div className="grid grid-cols-4 lg:gap-4">
-          <div className="order-1 md:order-2 col-span-4 lg:col-span-3">
-            <h1 className="text-[30px] mb-5 text-left text-black font-bold">
-              Sản Phẩm
-            </h1>
+    <div className="grid grid-cols-4 lg:gap-4">
+      <div className="order-1 md:order-2 col-span-4 lg:col-span-3">
+        <h1 className="text-[30px] mb-5 text-left text-black font-bold">
+          Sản Phẩm
+        </h1>
 
-            <div className="mt-3 relative min-h-[200px]">
-              <div className="relative overflow-hidden pb-4">
-                <div className="flex text-right items-center gap-3 border-b border-solid border-[#f4f4f4]">
-                  <label>Sắp xếp theo</label>
-                  <div className="flex">
-                    {[
-                      { label: "Mới nhất", icon: <FaEye />, value: "new" },
-                      {
-                        label: "Bán chạy",
-                        icon: <FaHotjar />,
-                        value: "best-seller",
-                      },
-                      ,
-                      {
-                        label: "Giá cao đến thấp",
-                        icon: <FaArrowUpWideShort />,
-                        value: "desc",
-                      },
-                      {
-                        label: "Giá thấp đến cao",
-                        icon: <FaArrowDownShortWide />,
-                        value: "asc",
-                      },
-                    ].map(
-                      (el, index) =>
-                        el && (
-                          <div
-                            key={index}
-                            className="block py-3 px-4 border-b-[3px] border-solid border-transparent mx-3 -my-[1px] leading-[1.5] text-[#212529] text-center align-middle cursor-pointer text-base transition-all duration-150 hover:text-theme hover:border-theme"
-                            onClick={() => handleSortChange(el.value)}
-                          >
-                            {el.label}
-                          </div>
-                        )
-                    )}
-                  </div>
-                </div>
+        <div className="mt-3 relative min-h-[200px]">
+          <div className="relative overflow-hidden pb-4">
+            <div className="flex text-right items-center gap-3 border-b border-solid border-[#f4f4f4]">
+              <label>Sắp xếp theo</label>
+              <div className="flex">
+                {[
+                  { label: "Mới nhất", icon: <FaEye />, value: "new" },
+                  {
+                    label: "Bán chạy",
+                    icon: <FaHotjar />,
+                    value: "best-seller",
+                  },
+                  ,
+                  {
+                    label: "Giá cao đến thấp",
+                    icon: <FaArrowUpWideShort />,
+                    value: "desc",
+                  },
+                  {
+                    label: "Giá thấp đến cao",
+                    icon: <FaArrowDownShortWide />,
+                    value: "asc",
+                  },
+                ].map(
+                  (el, index) =>
+                    el && (
+                      <div
+                        key={index}
+                        className="block py-3 px-4 border-b-[3px] border-solid border-transparent mx-3 -my-[1px] leading-[1.5] text-[#212529] text-center align-middle cursor-pointer text-base transition-all duration-150 hover:text-theme hover:border-theme"
+                        onClick={() => handleSortChange(el.value)}
+                      >
+                        {el.label}
+                      </div>
+                    )
+                )}
               </div>
-
-              <div className="mx-auto grid grid-cols-2 gap-4">
-                <ProductList />
-              </div>
-
-              <Pagination totalPage={3} />
             </div>
           </div>
 
-          <div className="order-2 md:order-1 col-span-4 lg:col-span-1">
-            <ProductsFilter />
+          <div className="mx-auto grid grid-cols-2 gap-4">
+            <ProductList />
           </div>
+
+          <Pagination totalPage={3} />
         </div>
-      </section>
-    </main>
+      </div>
+
+      <div className="order-2 md:order-1 col-span-4 lg:col-span-1">
+        <ProductsFilter />
+      </div>
+    </div>
   );
 };
 

@@ -15,6 +15,7 @@ import { usePathname, useRouter } from "next/navigation";
 import SearchBox from "./SearchBox";
 import PayBox from "./PayBox";
 import MenuBox from "./MenuBox";
+import { useAppSelector } from "@/lib/hooks";
 
 type Props = {};
 
@@ -28,6 +29,8 @@ const Header = (props: Props) => {
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [isPay, setIsPay] = useState<boolean>(false);
   const [isMenu, setIsMenu] = useState<boolean>(false);
+  const { user } = useAppSelector((state) => state.usersReducer);
+  console.log(user);
 
   return (
     <header id="header" className="fixed z-50 lg:absolute top-0 left-0 w-full">

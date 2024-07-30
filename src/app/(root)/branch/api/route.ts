@@ -1,7 +1,6 @@
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
   try {
     const response = await axios.get(`https://diatycafe.vercel.app/api/branch`);
 

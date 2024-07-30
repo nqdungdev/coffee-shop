@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import useSWR, { Fetcher } from "swr";
 import { toast } from "react-toastify";
+// import { useAppDispatch } from "@/lib/hooks";
+// import { setUser } from "@/lib/features/users/usersSlice";
 
 type Props = {};
 
@@ -18,10 +19,7 @@ export interface LoginValues {
 
 const Login = (props: Props) => {
   const router = useRouter();
-
-  // const fetcher: Fetcher<any, string> = (url) =>
-  //   fetch(url).then((res) => res.json());
-  // const { data, mutate } = useSWR("https://diaty2api.vercel.app/api", fetcher);
+  // const dispatch = useAppDispatch();
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -61,22 +59,22 @@ const Login = (props: Props) => {
       });
 
       const result = await res.json();
-
       console.log(result);
-      await fetch("/api/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sessionToken: result.token,
-          expiresAt: "10h",
-        }),
-      });
-
       if (res.ok) {
         // Cookies.set("token", result.token);
-        localStorage.setItem("token", result.token);
+        await fetch("/api/auth", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            sessionToken: result.token,
+            expiresAt: "10h",
+          }),
+        });
+        // dispatch(setUser(result.info));
+        localStorage.setItem("token", JSON.stringify(result.token));
+        localStorage.setItem("user", JSON.stringify(result.info));
         toast.success(result.message, {
           position: "bottom-right",
           autoClose: 5000,
@@ -89,7 +87,7 @@ const Login = (props: Props) => {
         });
 
         // mutate(); // Re-fetch the data
-        setTimeout(() => router.push("/"), 5000);
+        // setTimeout(() => router.push("/"), 5000);
       } else {
         toast.error(result.message, {
           position: "bottom-right",

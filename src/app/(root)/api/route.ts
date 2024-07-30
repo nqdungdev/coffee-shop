@@ -1,7 +1,6 @@
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req?.url || "");
   const search = req.url ? searchParams.get("search") : "";
   try {

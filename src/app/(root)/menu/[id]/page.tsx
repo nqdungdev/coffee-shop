@@ -8,8 +8,6 @@ import Comments from "@/components/productDetail/comments/Comments";
 import ViewedProducts from "@/components/productDetail/viewedProducts/ViewedProducts";
 import PolicyIntuitive from "@/components/productDetail/policyIntuitive/PolicyIntuitive";
 import Information from "@/components/productDetail/information/Information";
-import useSWR from "swr";
-import { useParams } from "next/navigation";
 
 type Props = {};
 

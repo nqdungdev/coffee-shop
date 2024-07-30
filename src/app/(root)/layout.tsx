@@ -8,7 +8,7 @@ import StoreProvider from "./StoreProvider";
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Gờ coffee",
+  title: { default: "Gờ coffee", template: "Gờ coffee | %s" },
   description: "Gờ coffee website",
 };
 

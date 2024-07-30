@@ -1,8 +1,7 @@
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET(
-  req: NextApiRequest,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {

@@ -2,7 +2,7 @@ import Button from "@/components/common/button/Button";
 
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import Products from "@/app/(root)/coffee/components/products/Products";
+import Products from "@/components/coffee/products/Products";
 
 type Props = {};
 

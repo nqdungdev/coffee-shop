@@ -1,6 +1,6 @@
-import Introduce from "@/app/(root)/about-us/components/introduce/Introduce";
-import VisionMission from "@/app/(root)/about-us/components/visionMission/VisionMission";
-import Contact from "@/app/(root)/about-us/components/contact/Contact";
+import Introduce from "@/components/about-us/introduce/Introduce";
+import VisionMission from "@/components/about-us/visionMission/VisionMission";
+import Contact from "@/components/about-us/contact/Contact";
 import React from "react";
 
 type Props = {};

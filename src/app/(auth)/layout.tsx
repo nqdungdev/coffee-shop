@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oswald, Josefin_Sans } from "next/font/google";
 import "@/app/globals.css";
 import { ToastContainer } from "react-toastify";
+import StoreProvider from "../(root)/StoreProvider";
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
