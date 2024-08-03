@@ -11,7 +11,7 @@ const MenuCollapse = ({ title, children }: Props) => {
   return (
     <>
       <div className="p-0">
-        <span className="m-0 font-bold py-4 leading-5 text-black mb-5 capitalize text-lg tracking-[.3px] flex justify-between items-center cursor-pointer border-b border-solid border-[#e7e7e7]">
+        <span className="m-0 font-bold py-3 leading-5 text-black my-2 capitalize text-lg tracking-[.3px] flex justify-between items-center cursor-pointer border-b border-solid border-[#e7e7e7]">
           {title}
           <button
             onClick={() => {

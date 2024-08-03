@@ -24,8 +24,9 @@ const VisionMission = (props: Props) => {
                 alt="Tầm nhìn"
                 title="Tầm nhìn"
                 loading="lazy"
-                layout="fill"
-                objectFit="contain"
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="10vw"
               />
             </div>
 
@@ -53,8 +54,9 @@ const VisionMission = (props: Props) => {
                 alt="Sứ mệnh"
                 title="Sứ mệnh"
                 loading="lazy"
-                layout="fill"
-                objectFit="contain"
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="10vw"
               />
             </div>
 

@@ -37,7 +37,7 @@ const PayBox = ({ usePay }: Props) => {
   return (
     <>
       <div
-        className={`h-screen w-full max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
+        className={`h-screen w-full max-w-[300px] md:max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
           isPay ? "right-0" : "-right-full"
         }`}
       >
@@ -99,8 +99,10 @@ const PayBox = ({ usePay }: Props) => {
                             </div>
                             <div className="pt-1">
                               <span className="leading-8 text-black">
-                                {(+product.new_price as number) *
-                                  product.quality}
+                                {(
+                                  (+product.new_price * product.quality) /
+                                  1000
+                                ).toFixed(3)}
                               </span>
                               đ
                             </div>

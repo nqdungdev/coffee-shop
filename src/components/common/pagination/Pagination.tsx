@@ -33,7 +33,7 @@ const Pagination = ({ totalPage }: Props) => {
                   `${pathname}?${createQueryString("page", (1).toString())}`
                 );
             }}
-            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-black hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
+            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-txt hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
               page <= 1 && "hidden"
             }`}
             disabled={page <= 1 ? true : false}
@@ -53,7 +53,7 @@ const Pagination = ({ totalPage }: Props) => {
                   )}`
                 );
             }}
-            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-black hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
+            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-txt hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
               page <= 1 && "hidden"
             }`}
             disabled={page <= 1 ? true : false}
@@ -73,7 +73,7 @@ const Pagination = ({ totalPage }: Props) => {
                 className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 ${
                   page === index + 1
                     ? "text-white bg-theme"
-                    : "bg-transparent text-black hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent]"
+                    : "bg-transparent text-txt hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent]"
                 }`}
                 onClick={() => {
                   push(
@@ -103,7 +103,7 @@ const Pagination = ({ totalPage }: Props) => {
                   )}`
                 );
             }}
-            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-black hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
+            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-txt hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
               page >= totalPage && "hidden"
             }`}
             disabled={page >= totalPage ? true : false}
@@ -122,7 +122,7 @@ const Pagination = ({ totalPage }: Props) => {
                   )}`
                 );
             }}
-            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-black hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
+            className={`flex items-center justify-center py-1 px-3 rounded-md m-1 text-xs transition-all duration-300 bg-transparent text-txt hover:bg-[#FBF9FF] hover:shadow-[0_4px_30px_0_rgba(0,0,0,.2),_0_0_0_transparent] ${
               page >= totalPage && "hidden"
             }`}
             disabled={page >= totalPage ? true : false}

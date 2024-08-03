@@ -14,7 +14,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 type Props = {};
 
 const Information = (props: Props) => {
-   const router = useRouter();
+  const router = useRouter();
   const [value, setValue] = useState<number>(1);
   const params = useParams();
 
@@ -35,15 +35,17 @@ const Information = (props: Props) => {
         <div className="relative w-full h-full rounded-md overflow-hidden">
           <Link href="#">
             {product && (
-              <Image
-                src={product.image}
-                alt={product.name}
-                title={product.name}
-                loading="lazy"
-                fill
-                sizes="40vw"
-                style={{ objectFit: "cover" }}
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  title={product.name}
+                  loading="lazy"
+                  fill
+                  sizes="40vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             )}
           </Link>
         </div>
@@ -177,7 +179,7 @@ const Information = (props: Props) => {
             <div className="w-[calc(100%_-_110px] flex gap-2">
               <Button
                 className="bg-red border-red text-white hover:bg-white hover:text-red text-center capitalize"
-                onClick={() => handleAddToCart(product._id)}
+                onClick={() => handleAddToCart(product)}
               >
                 <>
                   <p className="text-xs leading-4">Thêm vào giỏ</p>
@@ -187,7 +189,13 @@ const Information = (props: Props) => {
                 </>
               </Button>
 
-              <Button className="bg-green border-green text-white hover:bg-white hover:text-green text-center capitalize" onClick={()=>router.push("/payment")}>
+              <Button
+                className="bg-green border-green text-white hover:bg-white hover:text-green text-center capitalize"
+                onClick={() => {
+                  handleAddToCart(product);
+                  router.push("/payment");
+                }}
+              >
                 <>
                   <p className="text-xs leading-4">Mua Ngay</p>
                   <span className="text-[9px] font-normal leading-4">

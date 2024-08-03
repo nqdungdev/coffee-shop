@@ -1,30 +1,44 @@
 "use client";
-import Breadcrumbs from "@/components/common/breadcrumbs/Breadcrumbs";
+
 import { useAppDispatch } from "@/lib/hooks";
 import useSWR from "swr";
 import { setProducts, setSortBy } from "@/lib/features/products/productsSlice";
 import { useSearchParams } from "next/navigation";
 import ProductList from "@/components/menu/productList/ProductList";
-import Pagination from "@/components/common/pagination/Pagination";
+
 import {
   FaArrowDownShortWide,
   FaArrowUpWideShort,
   FaEye,
+  FaFilter,
   FaHotjar,
+  FaSort,
 } from "react-icons/fa6";
 import ProductsFilter from "@/components/menu/productsFilter/ProductsFilter";
+import { useState } from "react";
 
 type Props = {};
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 const Menu = (props: Props) => {
+  const [isFilter, setIsFilter] = useState<boolean>(false);
+  const [isSort, setIsSort] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
+  const page = searchParams.get("page");
   const dispatch = useAppDispatch();
-  useSWR(search ? `/menu/api?search=${search}` : `/menu/api`, fetcher, {
-    onSuccess: (fetchedData) => {
-      dispatch(setProducts(fetchedData));
-    },
-  });
+  useSWR(
+    search
+      ? `/menu/api?search=${search}&page=${page || 1}`
+      : `/menu/api?page=${page || 1}`,
+    fetcher,
+    {
+      onSuccess: (fetchedData) => {
+        dispatch(setProducts(fetchedData.data));
+      },
+    }
+  );
 
   const handleSortChange = (value: string) => {
     dispatch(setSortBy(value));
@@ -37,7 +51,22 @@ const Menu = (props: Props) => {
         </h1>
 
         <div className="mt-3 relative min-h-[200px]">
-          <div className="relative overflow-hidden pb-4">
+          <div className="md:hidden p-3 bg-[#f6f6f6] text-txt relative grid grid-cols-2 mb-5 gap-0">
+            <div
+              className="relative flex gap-2 items-center cursor-pointer after:w-[1px] after:h-4 after:bg-[#b2b2b2] after:absolute after:top-1 after:right-0"
+              onClick={() => setIsFilter(!isFilter)}
+            >
+              <FaFilter /> Lọc sản phẩm
+            </div>
+            <div
+              className="relative flex gap-2 items-center pl-3 cursor-pointer"
+              onClick={() => setIsSort(!isSort)}
+            >
+              <FaSort /> Sắp xếp
+            </div>
+          </div>
+
+          <div className="hidden md:block relative overflow-hidden pb-4">
             <div className="flex text-right items-center gap-3 border-b border-solid border-[#f4f4f4]">
               <label>Sắp xếp theo</label>
               <div className="flex">
@@ -75,16 +104,15 @@ const Menu = (props: Props) => {
             </div>
           </div>
 
-          <div className="mx-auto grid grid-cols-2 gap-4">
-            <ProductList />
-          </div>
-
-          <Pagination totalPage={3} />
+          <ProductList />
         </div>
       </div>
 
       <div className="order-2 md:order-1 col-span-4 lg:col-span-1">
-        <ProductsFilter />
+        <ProductsFilter
+          useFilter={[isFilter, setIsFilter]}
+          useSort={[isSort, setIsSort]}
+        />
       </div>
     </div>
   );

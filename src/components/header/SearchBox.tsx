@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import Button from "../common/button/Button";
+import Button from "@/components/common/button/Button";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useForm } from "react-hook-form";
 import { setSearches } from "@/lib/features/products/productsSlice";
@@ -14,7 +14,7 @@ type Props = {
 const SearchBox = ({ useSearch }: Props) => {
   const [isSearch, setIsSearch] = useSearch;
 
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       keyword: "",
     },
@@ -27,12 +27,12 @@ const SearchBox = ({ useSearch }: Props) => {
   const { searchedProducts } = useAppSelector((state) => state.productsReducer);
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch(setSearches(data.keyword));
   };
   return (
     <>
       <div
-        className={`h-screen w-full max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
+        className={`h-screen w-full max-w-[300px] md:max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
           isSearch ? "right-0" : "-right-full"
         }`}
       >
@@ -73,27 +73,30 @@ const SearchBox = ({ useSearch }: Props) => {
           {searchedProducts?.map(
             (product: any, index) =>
               product && (
-                <div key={index} className="mb-3 overflow-hidden flex">
-                  <div className="mr-3 relative w-[80px] h-[80px]">
-                    <Link href={`/menu/${product._id}`}>
+                <div key={index} className="mb-3 overflow-hidden flex gap-3">
+                  <Link href={`/menu/${product._id}`}>
+                    <div className="relative w-[80px] h-[80px] rounded-md overflow-hidden">
                       <Image
                         src={product.image}
                         alt={product.name}
                         title={product.name}
                         loading="lazy"
-                        width={80}
-                        height={80}
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="10vw"
                       />
-                    </Link>
-                  </div>
-                  <div className="text-sm text-black leading-[1.4] tracking-widest mt-0 text-left">
-                    <h3 className="mb-3">
+                    </div>
+                  </Link>
+
+                  <div className="text-sm text-black leading-[1.4] tracking-widest mt-0 text-left flex flex-col justify-between">
+                    <h3>
                       <Link href={`/menu/${product._id}`} title={product.name}>
                         {product.name}
                       </Link>
                     </h3>
-                    <p className="text-[#ff5c5f] leading-6">{product.price}</p>
+                    <p className="text-[#ff5c5f] leading-6">
+                      <span>{(product.new_price / 1000).toFixed(3)}</span>đ
+                    </p>
                   </div>
                 </div>
               )

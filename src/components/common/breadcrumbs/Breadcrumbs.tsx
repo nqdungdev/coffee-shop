@@ -1,28 +1,28 @@
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
+type Props = {
+  location: {
+    title: string;
+    link: string;
+  };
+};
 
-const Breadcrumbs = (props: Props) => {
+const Breadcrumbs = ({ location }: Props) => {
   return (
     <section className="bg-[#f5f5fd] py-1 overflow-hidden">
       <div className="container">
         <div className="relative inline-flex align-middle">
-          <Link
-            href="/"
-            className="px-1 text-[#2e2e2e] leading-[37px] line-clamp-1"
-          >
+          <Link href="/" className="px-1 text-txt leading-[37px] line-clamp-1">
             Trang chủ
           </Link>
 
-          <span className="px-1 text-[#2e2e2e] leading-[37px] line-clamp-1">
-            /
-          </span>
+          <span className="px-1 text-txt leading-[37px] line-clamp-1">/</span>
           <Link
-            href="/menu"
-            className="px-1 text-[#2e2e2e] leading-[37px] line-clamp-1"
+            href={location.link}
+            className="px-1 text-txt leading-[37px] line-clamp-1"
           >
-            Sản phẩm
+            {location.title}
           </Link>
         </div>
       </div>

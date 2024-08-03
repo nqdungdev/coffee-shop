@@ -14,8 +14,9 @@ const Introduce = (props: Props) => {
             alt="Về chúng tôi"
             title="Về chúng tôi"
             loading="lazy"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
+            sizes="100vw"
           />
         </div>
 
@@ -82,8 +83,9 @@ const Introduce = (props: Props) => {
                 alt="Về Chúng Tôi"
                 title="Về Chúng Tôi"
                 loading="lazy"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="40vw"
               />
             </div>
           </div>

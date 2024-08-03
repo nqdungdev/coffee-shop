@@ -2,14 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaSearch, FaTimes, FaTrashAlt } from "react-icons/fa";
-import {
-  FaBars,
-  FaBasketShopping,
-  FaMinus,
-  FaPlus,
-  FaUser,
-} from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
+import { FaBars, FaBasketShopping, FaUser } from "react-icons/fa6";
 import Button from "../common/button/Button";
 import { usePathname, useRouter } from "next/navigation";
 import SearchBox from "./SearchBox";
@@ -29,8 +23,15 @@ const Header = (props: Props) => {
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [isPay, setIsPay] = useState<boolean>(false);
   const [isMenu, setIsMenu] = useState<boolean>(false);
-  const { user } = useAppSelector((state) => state.usersReducer);
-  console.log(user);
+  // const { user } = useAppSelector((state) => state.usersReducer);
+  // console.log(user);
+
+  const categories = [
+    { label: "Trang chủ", link: "/" },
+    { label: "Thực đơn", link: "menu" },
+    { label: "Về chúng tôi", link: "about-us" },
+    { label: "Liên hệ", link: "contact" },
+  ];
 
   return (
     <header id="header" className="fixed z-50 lg:absolute top-0 left-0 w-full">
@@ -43,30 +44,30 @@ const Header = (props: Props) => {
                   {
                     label: "Facebook",
                     image: "/uploads/source/icon/group-1.png",
-                    link: "#",
+                    link: "https://www.facebook.com/",
                   },
                   {
                     label: "Twitter",
                     image: "/uploads/source/icon/twitter-1.png",
-                    link: "#",
+                    link: "https://twitter.com/home",
                   },
                   {
                     label: "Youtube",
                     image: "/uploads/source/icon/youtube-1.png",
-                    link: "#",
+                    link: "https://www.youtube.com/",
                   },
                   {
                     label: "Instagram",
                     image: "/uploads/source/icon/instagram-1.png",
-                    link: "#",
+                    link: "https://www.instagram.com/",
                   },
                   {
                     label: "Pinterest",
-                    image: "/uploads/source/icon/google-plus-1.png",
-                    link: "#",
+                    image: "/uploads/source/icon/pinterest.png",
+                    link: "https://www.pinterest.com/",
                   },
                 ].map((el, index) => (
-                  <Link key={index} href={el.link}>
+                  <Link key={index} href={el.link} target="_blank">
                     <Image
                       src={el.image}
                       alt={el.label}
@@ -120,16 +121,23 @@ const Header = (props: Props) => {
               ].map(
                 (el, index) =>
                   el && (
-                    <div key={index} className="flex items-center gap-1">
-                      <Image
-                        src={el.icon}
-                        alt={el.title}
-                        title={el.title}
-                        loading="lazy"
-                        width={32}
-                        height={32}
-                      />
-                      <div>
+                    <div
+                      key={index}
+                      className="relative flex items-center gap-1"
+                    >
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-xl bg-white/80 w-full h-full"></div>
+                      <div className="relative w-8 h-8">
+                        <Image
+                          src={el.icon}
+                          alt={el.title}
+                          title={el.title}
+                          loading="lazy"
+                          width={32}
+                          height={32}
+                        />
+                      </div>
+
+                      <div className="relative">
                         <p className="text-theme mb-1 text-base leading-4">
                           {el.title}
                         </p>
@@ -180,28 +188,23 @@ const Header = (props: Props) => {
 
       <nav className="container lg:justify-between lg:items-center hidden lg:flex">
         <ul className="flex">
-          {[
-            { label: "Trang chủ", link: "/" },
-            { label: "Cà phê", link: "coffee" },
-            { label: "Thực đơn", link: "menu" },
-            { label: "Về chúng tôi", link: "about-us" },
-            { label: "Liên hệ", link: "contact" },
-          ].map(
+          {categories?.map(
             (el, index) =>
               el && (
                 <li
                   key={index}
-                  className="group"
+                  className="relative group"
                   onClick={() => setActive(el.link)}
                 >
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-xl bg-white/80 w-full h-full"></div>
                   <Link
                     target="_self"
-                    className={`relative text-navTxt p-5 text-base font-bold inline-block uppercase  
+                    className={`relative text-txt p-5 text-base font-bold inline-block uppercase rounded-full
                   ${
                     active === el.link
-                      ? "after:opacity-100 after:left-0 text-navTxtHover"
+                      ? "after:opacity-100 after:left-0 text-txtHover"
                       : "after:opacity-0 after:left-1"
-                  } after:absolute after:top-1/2 after:w-3 after:h-3 after:bg-theme after:rounded-full after:-translate-y-1/2 after:transition-all after:duration-300 group-hover:after:opacity-100 group-hover:after:left-0 group-hover:text-navTxtHover
+                  } after:absolute after:top-1/2 after:w-3 after:h-3 after:bg-theme after:rounded-full after:-translate-y-1/2 after:transition-all after:duration-300 group-hover:after:opacity-100 group-hover:after:left-0 group-hover:text-txtHover
                     group-hover:after:transition-all group-hover:after:duration-300`}
                     href={el.link}
                   >
@@ -245,7 +248,7 @@ const Header = (props: Props) => {
 
       <PayBox usePay={[isPay, setIsPay]} />
 
-      <MenuBox useMenu={[isMenu, setIsMenu]} />
+      <MenuBox useMenu={[isMenu, setIsMenu]} categories={categories} />
     </header>
   );
 };

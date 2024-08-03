@@ -4,6 +4,8 @@ import "@/app/globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import StoreProvider from "./StoreProvider";
+import Link from "next/link";
+import { FaChevronUp } from "react-icons/fa6";
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 
@@ -18,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={josefinSans.className}>
         <StoreProvider>
           <Header />
@@ -26,6 +28,13 @@ export default function RootLayout({
         </StoreProvider>
 
         <Footer />
+
+        <Link
+          href="#header"
+          className="w-[50px] h-[50px] rounded-full bg-themeLight flex justify-center items-center fixed bottom-5 right-5 text-lg z-50 text-white"
+        >
+          <FaChevronUp />
+        </Link>
       </body>
     </html>
   );

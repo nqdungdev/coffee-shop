@@ -1,6 +1,3 @@
-import Breadcrumbs from "@/components/common/breadcrumbs/Breadcrumbs";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import RelatedProducts from "@/components/productDetail/relatedProducts/RelatedProducts";
 import RatingStar from "@/components/productDetail/ratingStar/RatingStar";
@@ -13,35 +10,31 @@ type Props = {};
 
 const ProductDetails = (props: Props) => {
   return (
-    <main className="bg-white text-black pt-[165px]">
-      <Breadcrumbs />
-
-      <div className="container mt-4">
-        <div className="grid grid-cols-12 gap-2 min-h-[400px]">
-          <div className="col-span-12 md:col-span-9 grid grid-cols-9 gap-5">
-            <Information />
-          </div>
-
-          <div className="col-span-12 md:col-span-3">
-            <PolicyIntuitive />
-          </div>
+    <>
+      <div className="grid grid-cols-12 gap-2 min-h-[420px]">
+        <div className="col-span-12 md:col-span-9 grid grid-cols-9 gap-5">
+          <Information />
         </div>
 
-        <section className="grid grid-cols-12 gap-2">
-          <div className="col-span-12 md:col-span-9">
-            <RelatedProducts />
-
-            <RatingStar />
-
-            <Comments />
-          </div>
-
-          <div className="col-span-12 md:col-span-3">
-            <ViewedProducts />
-          </div>
-        </section>
+        <div className="col-span-12 md:col-span-3">
+          <PolicyIntuitive />
+        </div>
       </div>
-    </main>
+
+      <section className="grid grid-cols-12 gap-2">
+        <div className="col-span-12 md:col-span-9">
+          <RelatedProducts />
+
+          <RatingStar />
+
+          <Comments />
+        </div>
+
+        <div className="col-span-12 md:col-span-3">
+          <ViewedProducts />
+        </div>
+      </section>
+    </>
   );
 };
 

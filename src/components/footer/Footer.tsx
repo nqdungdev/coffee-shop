@@ -27,26 +27,31 @@ const Footer = (props: Props) => {
                 {
                   label: "Facebook",
                   image: "/uploads/source/icon/facebook.png",
-                  link: "#",
+                  link: "https://www.facebook.com/",
                 },
 
                 {
                   label: "Youtube",
                   image: "/uploads/source/icon/youtube.png",
-                  link: "#",
+                  link: "https://www.youtube.com/",
                 },
                 {
                   label: "Instagram",
                   image: "/uploads/source/icon/instagram.png",
-                  link: "#",
+                  link: "https://www.instagram.com/",
                 },
                 {
                   label: "Zalo",
                   image: "/uploads/source/icon/zalo.png",
-                  link: "#",
+                  link: "https://zalo.me/pc",
                 },
               ].map((el, index) => (
-                <Link key={index} href={el.link} className="relative w-7 h-7">
+                <Link
+                  key={index}
+                  href={el.link}
+                  className="relative w-7 h-7"
+                  target="_blank"
+                >
                   <Image
                     src={el.image}
                     alt={el.label}
@@ -86,16 +91,16 @@ const Footer = (props: Props) => {
             </div>
             <ul className="p-0">
               {[
-                { label: "Về chúng tôi", link: "ve-chung-toi" },
+                { label: "Về chúng tôi", link: "about-us" },
                 {
                   label: "Tầm nhìn & sứ mệnh",
-                  link: "tam-nhin-&-su-menh",
+                  link: "about-us",
                 },
-                { label: "Triết lý kinh doanh", link: "triet-ly-kinh-doanh" },
+                { label: "Triết lý kinh doanh", link: "about-us" },
                 ,
-                { label: "Tuyển dụng", link: "tuyen-dung" },
+                { label: "Tuyển dụng", link: "about-us" },
                 ,
-                { label: "Liên hệ", link: "lien-he" },
+                { label: "Liên hệ", link: "contact" },
               ].map((el, index) => (
                 <li key={index} className="group">
                   {el && (

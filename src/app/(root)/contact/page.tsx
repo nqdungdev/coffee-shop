@@ -74,7 +74,7 @@ const Contact = (props: Props) => {
   };
 
   return (
-    <main className="bg-white text-black pt-[165px]">
+    <>
       <section className="min-h-[200px] h-[200px] text-center overflow-hidden">
         <div className="bg-[url(/uploads/source/background/coffeebackgroud1.jpg)] bg-cover w-full h-full">
           <div className="relative flex justify-center items-center w-full h-full after:absolute after:bg-black after:bg-opacity-50 after:left-0 after:top-0 after:w-full after:h-full">
@@ -121,13 +121,22 @@ const Contact = (props: Props) => {
                 <div className="p-0">
                   <ul className="mt-8 mb-4 pl-8 flex items-center">
                     {[
-                      { label: "Facebook", link: "", icon: <FaFacebookF /> },
-                      { label: "Youtube", link: "", icon: <FaYoutube /> },
+                      {
+                        label: "Facebook",
+                        link: "https://www.facebook.com/",
+                        icon: <FaFacebookF />,
+                      },
+                      {
+                        label: "Youtube",
+                        link: "https://www.youtube.com/",
+                        icon: <FaYoutube />,
+                      },
                     ].map((el, index) => (
                       <li key={index} className="mr-3">
                         <Link
                           className="flex justify-center items-center bg-theme text-white w-10 h-10 rounded-full"
                           href={el.link}
+                          target="_blank"
                         >
                           {el.icon}
                         </Link>
@@ -207,7 +216,7 @@ const Contact = (props: Props) => {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

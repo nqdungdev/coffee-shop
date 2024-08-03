@@ -25,7 +25,6 @@ const filterData = (products: any, filters: string[]) => {
 };
 
 const searchData = (products: any, keyword: string) => {
-  console.log(keyword);
   if (keyword === "") return [];
   return products.filter((item: any) =>
     item.name.toLowerCase().includes(keyword.toLowerCase())
@@ -39,6 +38,7 @@ interface IState {
   filteredProducts: any[];
   searchedProducts: any[];
   cart: any[];
+  viewed: any[];
 }
 
 const initialState: IState = {
@@ -48,6 +48,7 @@ const initialState: IState = {
   filteredProducts: [],
   searchedProducts: [],
   cart: [],
+  viewed: [],
 };
 
 export const productsSlice = createSlice({
@@ -104,6 +105,15 @@ export const productsSlice = createSlice({
           : product
       );
     },
+    setViewed: (state, action) => {
+      if (state.viewed.length === 0) state.viewed = [action.payload];
+      else if (
+        state.viewed.find((product: any) => product._id !== action.payload._id)
+      )
+        state.viewed.length < 5
+          ? (state.viewed = [action.payload, ...state.viewed])
+          : (state.viewed[0] = action.payload);
+    },
   },
 });
 
@@ -116,6 +126,7 @@ export const {
   removeToCart,
   increaseQuality,
   decreaseQuality,
+  setViewed,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

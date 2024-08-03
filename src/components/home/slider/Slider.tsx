@@ -25,13 +25,13 @@ const Slider = (props: Props) => {
   return (
     <section className="relative -mt-[170px]">
       <div
-        className="relative h-[700px] w-full"
+        className="relative h-[690px] w-full"
         style={{ position: "relative" }}
       >
         <div ref={slideRef} className="h-full">
           {[
-            { image: "/uploads/source/slide/slider1.jpg" },
-            { image: "/uploads/source/slide/slider2.jpeg" },
+            { image: "/uploads/source/slider/slider1.jpg" },
+            { image: "/uploads/source/slider/slider2.jpg" },
           ].map(
             (el, index) =>
               el && (
@@ -47,7 +47,7 @@ const Slider = (props: Props) => {
                     src={el.image}
                     alt=""
                     fill
-                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                     sizes="100vw"
                   />
                 </div>
