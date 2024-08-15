@@ -1,7 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
-import Button from "../common/button/Button";
+"use client";
+
+import { useState } from "react";
+import Button from "@/components/common/button/Button";
 import { FaTimes, FaTrashAlt } from "react-icons/fa";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FaBasketShopping, FaMinus, FaPlus } from "react-icons/fa6";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
@@ -11,12 +13,10 @@ import {
 } from "@/lib/features/products/productsSlice";
 import { useRouter } from "next/navigation";
 
-type Props = {
-  usePay: [boolean, Dispatch<SetStateAction<boolean>>];
-};
+type Props = {};
 
-const PayBox = ({ usePay }: Props) => {
-  const [isPay, setIsPay] = usePay;
+const PayBox = (props: Props) => {
+  const [isPay, setIsPay] = useState<boolean>(false);
   const router = useRouter();
 
   const dispatch = useAppDispatch();
@@ -36,6 +36,17 @@ const PayBox = ({ usePay }: Props) => {
   };
   return (
     <>
+      <div className="relative">
+        <Button
+          className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative overflow-auto"
+          onClick={() => setIsPay(true)}
+        >
+          <FaBasketShopping />
+        </Button>
+        <span className="absolute -top-1 right-4 text-white bg-headerItem text-xs leading-4 rounded-full z-20 w-4 h-4 flex justify-center items-center">
+          {cart.length}
+        </span>
+      </div>
       <div
         className={`h-screen w-full max-w-[300px] md:max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
           isPay ? "right-0" : "-right-full"
@@ -162,7 +173,7 @@ const PayBox = ({ usePay }: Props) => {
       </div>
       {isPay && (
         <div
-          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 ${
+          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 z-40 ${
             isPay ? "opacity-50" : "opacity-0"
           }`}
         ></div>

@@ -1,13 +1,13 @@
-import axios from "axios";
+import productApiRequest from "@/utils/requests/product.request";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req?.url || "");
   const search = req.url ? searchParams.get("search") : "";
   const page = (req.url && searchParams.get("page")) || 1;
   try {
-    const response = await axios.get(`https://diatycafe.vercel.app/api/menu`);
+    const { payload } = await productApiRequest.getProductList();
 
-    const filtered = response.data.data.filter((item: any) =>
+    const filtered = (payload as any).data.filter((item: any) =>
       item.name.toLowerCase().includes(search ? search.toLowerCase() : "")
     );
 

@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/common/button/Button";
-import PaymentForm from "@/components/payment/paymentForm/page";
+import PaymentForm from "@/app/(root)/payment/_components/paymentForm/page";
 import { useRouter } from "next/navigation";
 
 type Props = {};

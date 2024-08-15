@@ -1,19 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import Button from "@/components/common/button/Button";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useForm } from "react-hook-form";
 import { setSearches } from "@/lib/features/products/productsSlice";
 
-type Props = {
-  useSearch: [boolean, Dispatch<SetStateAction<boolean>>];
-};
+type Props = {};
 
-const SearchBox = ({ useSearch }: Props) => {
-  const [isSearch, setIsSearch] = useSearch;
-
+const SearchBox = (props: Props) => {
+  const [isSearch, setIsSearch] = useState<boolean>(false);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       keyword: "",
@@ -31,6 +30,12 @@ const SearchBox = ({ useSearch }: Props) => {
   };
   return (
     <>
+      <Button
+        className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
+        onClick={() => setIsSearch(true)}
+      >
+        <FaSearch />
+      </Button>
       <div
         className={`h-screen w-full max-w-[300px] md:max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-white bg-white transition-all duration-500 ${
           isSearch ? "right-0" : "-right-full"
@@ -106,7 +111,7 @@ const SearchBox = ({ useSearch }: Props) => {
 
       {isSearch && (
         <div
-          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 ${
+          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 z-40 ${
             isSearch ? "opacity-50" : "opacity-0"
           }`}
         ></div>

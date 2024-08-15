@@ -1,37 +1,23 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { FaBars, FaBasketShopping, FaUser } from "react-icons/fa6";
-import Button from "../common/button/Button";
-import { usePathname, useRouter } from "next/navigation";
 import SearchBox from "./SearchBox";
 import PayBox from "./PayBox";
 import MenuBox from "./MenuBox";
-import { useAppSelector } from "@/lib/hooks";
+import UserBox from "./UserBox";
+import HeaderCategories from "./HeaderCategories";
+import { cookies } from "next/headers";
 
 type Props = {};
 
 const Header = (props: Props) => {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const [active, setActive] = useState<string>(
-    pathname === "/" ? "" : `${pathname.split("/")[1]}`
-  );
-  const [isSearch, setIsSearch] = useState<boolean>(false);
-  const [isPay, setIsPay] = useState<boolean>(false);
-  const [isMenu, setIsMenu] = useState<boolean>(false);
-  // const { user } = useAppSelector((state) => state.usersReducer);
-  // console.log(user);
-
   const categories = [
     { label: "Trang chủ", link: "/" },
     { label: "Thực đơn", link: "menu" },
     { label: "Về chúng tôi", link: "about-us" },
     { label: "Liên hệ", link: "contact" },
   ];
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("accessToken");
 
   return (
     <header id="header" className="fixed z-50 lg:absolute top-0 left-0 w-full">
@@ -83,12 +69,7 @@ const Header = (props: Props) => {
             </nav>
 
             <div className="col-span-5 flex items-center lg:hidden">
-              <Button
-                className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-                onClick={() => setIsMenu(true)}
-              >
-                <FaBars />
-              </Button>
+              <MenuBox categories={categories} />
             </div>
 
             <div className="col-span-2 text-center flex items-center justify-center px-3 relative w-full h-full">
@@ -156,99 +137,27 @@ const Header = (props: Props) => {
             </div>
 
             <div className="lg:hidden col-span-5 flex justify-end items-center gap-3">
-              <Button
-                className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-                onClick={() => setIsSearch(true)}
-              >
-                <FaSearch />
-              </Button>
+              <SearchBox />
 
-              <div className="relative">
-                <Button
-                  className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-                  onClick={() => setIsPay(true)}
-                >
-                  <FaBasketShopping />
-                </Button>
-                <span className="absolute -top-1 right-4 text-white bg-headerItem text-xs leading-4 px-1 py-0 rounded-full z-20">
-                  0
-                </span>
-              </div>
+              <PayBox />
 
-              <Button
-                className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-                onClick={() => router.push("/login")}
-              >
-                <FaUser />
-              </Button>
+              <UserBox accessToken={accessToken?.value ?? ""} />
             </div>
           </div>
         </div>
       </div>
 
       <nav className="container lg:justify-between lg:items-center hidden lg:flex">
-        <ul className="flex">
-          {categories?.map(
-            (el, index) =>
-              el && (
-                <li
-                  key={index}
-                  className="relative group"
-                  onClick={() => setActive(el.link)}
-                >
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-xl bg-white/80 w-full h-full"></div>
-                  <Link
-                    target="_self"
-                    className={`relative text-txt p-5 text-base font-bold inline-block uppercase rounded-full
-                  ${
-                    active === el.link
-                      ? "after:opacity-100 after:left-0 text-txtHover"
-                      : "after:opacity-0 after:left-1"
-                  } after:absolute after:top-1/2 after:w-3 after:h-3 after:bg-theme after:rounded-full after:-translate-y-1/2 after:transition-all after:duration-300 group-hover:after:opacity-100 group-hover:after:left-0 group-hover:text-txtHover
-                    group-hover:after:transition-all group-hover:after:duration-300`}
-                    href={el.link}
-                  >
-                    <span>{el.label}</span>
-                  </Link>
-                </li>
-              )
-          )}
-        </ul>
+        <HeaderCategories categories={categories} />
 
         <div className="flex items-center gap-5">
-          <Button
-            className="text-white !w-8 !h-8 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-            onClick={() => setIsSearch(true)}
-          >
-            <FaSearch />
-          </Button>
+          <SearchBox />
 
-          <div className="relative">
-            <Button
-              className="text-white !w-8 !h-8 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative overflow-auto"
-              onClick={() => setIsPay(true)}
-            >
-              <FaBasketShopping />
-            </Button>
-            <span className="absolute -top-1 right-4 text-white bg-headerItem text-xs leading-4 px-1 py-0 rounded-full z-20">
-              0
-            </span>
-          </div>
+          <PayBox />
 
-          <Button
-            className="text-white !w-8 !h-8 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
-            onClick={() => router.push("/login")}
-          >
-            <FaUser />
-          </Button>
+          <UserBox accessToken={accessToken?.value ?? ""} />
         </div>
       </nav>
-
-      <SearchBox useSearch={[isSearch, setIsSearch]} />
-
-      <PayBox usePay={[isPay, setIsPay]} />
-
-      <MenuBox useMenu={[isMenu, setIsMenu]} categories={categories} />
     </header>
   );
 };

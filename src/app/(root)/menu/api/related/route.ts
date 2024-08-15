@@ -1,13 +1,13 @@
-import axios from "axios";
+import productApiRequest from "@/utils/requests/product.request";
 
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const response = await axios.get(`https://diatycafe.vercel.app/api/menu`);
+    const { payload } = await productApiRequest.getProductList();
 
-    const shuffle = response.data.data.sort(() => Math.random() - 0.5);
+    const shuffle = (payload as any).data.sort(() => Math.random() - 0.5);
 
     const result = shuffle.filter((el: any, index: number) => index < 4 && el);
 

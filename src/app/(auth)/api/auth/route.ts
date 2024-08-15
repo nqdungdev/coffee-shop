@@ -1,20 +1,25 @@
 export async function POST(req: Request) {
   const body = await req.json();
-  const sessionToken = body.sessionToken as string;
-  const expiresAt = body.expiresAt as string;
-  if (!sessionToken) {
-    return Response.json(
-      { message: "Không nhận được session token" },
-      {
-        status: 400,
-      }
-    );
+  const accessToken = body.accessToken as string;
+  const refreshToken = body.refreshToken as string;
+  const userId = body.id as string;
+  if (!accessToken || !refreshToken) {
+    return new Response(JSON.stringify({ message: "Không nhận được token" }), {
+      status: 400,
+    });
   }
-  const expiresDate = new Date(expiresAt).toUTCString();
-  return Response.json(body, {
+
+  // `accessToken=${accessToken}; refreshToken=${refreshToken}; userId=${id}; Path=/; HttpOnly; SameSite=Lax; Secure`;
+
+  const accessTokenCookie = `accessToken=${accessToken}; HttpOnly; Path=/; Max-Age=3600; SameSite=Strict; Secure`;
+  const refreshTokenCookie = `refreshToken=${refreshToken}; HttpOnly; Path=/; Max-Age=604800; SameSite=Strict; Secure`;
+  const userIdCookie = `userId=${userId}; HttpOnly; Path=/; Max-Age=3600; SameSite=Strict; Secure`;
+
+  return new Response(JSON.stringify(body), {
     status: 200,
     headers: {
-      "Set-Cookie": `sessionToken=${sessionToken}; Path=/; HttpOnly; Expires=${expiresDate}; SameSite=Lax; Secure`,
+      "Set-Cookie": `${accessTokenCookie}, ${refreshTokenCookie}, ${userIdCookie}`,
+      "Content-Type": "application/json",
     },
   });
 }

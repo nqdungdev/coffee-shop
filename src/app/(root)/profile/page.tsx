@@ -2,6 +2,7 @@ import Button from "@/components/common/button/Button";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -17,7 +18,7 @@ const Profile = (props: Props) => {
   console.log(sessionToken);
 
   return (
-    <main className="bg-white text-black pt-[165px]">
+    <main className="bg-transparent text-black">
       <div className="container">
         <div className="grid grid-cols-12 gap-2 p-5">
           <div className="col-span-3 bg-transparent">
@@ -39,10 +40,24 @@ const Profile = (props: Props) => {
                 </div>
               </div>
               <nav className="py-5">
-                <ul>
-                  <li>Tài khoản của tôi</li>
-                  <li>Đơn mua</li>
-                  <li>Thông báo</li>
+                <ul className="flex flex-col">
+                  {[
+                    { label: "Tài khoản của tôi", link: "#" },
+                    { label: "Đơn mua", link: "#" },
+                    { label: "Thông báo", link: "#" },
+                  ].map(
+                    (el, index) =>
+                      el && (
+                        <li key={index} className="py-3 group">
+                          <Link
+                            href={el.link}
+                            className="group-hover:text-theme transition-all duration-300"
+                          >
+                            {el.label}
+                          </Link>
+                        </li>
+                      )
+                  )}
                 </ul>
               </nav>
             </div>

@@ -1,19 +1,25 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
-import React, { Dispatch, SetStateAction } from "react";
-import { FaSearch, FaTimes } from "react-icons/fa";
-import Button from "../common/button/Button";
+import { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Button from "@/components/common/button/Button";
 
 type Props = {
-  useMenu: [boolean, Dispatch<SetStateAction<boolean>>];
   categories: { label: string; link: string }[];
 };
 
-const MenuBox = ({ useMenu, categories }: Props) => {
-  const [isMenu, setIsMenu] = useMenu;
+const MenuBox = ({ categories }: Props) => {
+  const [isMenu, setIsMenu] = useState<boolean>(false);
 
   return (
     <>
+      <Button
+        className="text-white !w-10 !h-10 !p-2 bg-theme border-theme hover:text-theme rounded-full flex justify-center items-center relative"
+        onClick={() => setIsMenu(true)}
+      >
+        <FaBars />
+      </Button>
       <nav
         className={`h-screen w-full max-w-[300px] md:max-w-[400px] top-0 fixed z-50 overflow-y-auto text-center text-black bg-white transition-all duration-500 lg:hidden ${
           isMenu ? "left-0" : "-left-full"
@@ -52,7 +58,7 @@ const MenuBox = ({ useMenu, categories }: Props) => {
       </nav>
       {isMenu && (
         <div
-          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 ${
+          className={`fixed left-0 top-0 w-full h-full bg-black transition-all duration-300 z-40 ${
             isMenu ? "opacity-50" : "opacity-0"
           }`}
         ></div>
